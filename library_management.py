@@ -70,7 +70,26 @@ class LMS:
                 "Status":"Available"}})
                 print (f"This books '{new_books}' has been added successfully!")
 
+    def return_books(self):
+        books_id = input ("Enter the book's ID: ")
+        if books_id in self.books_dict.keys():
+            if self.books_dict[books_id]["Status"] == "Available":
+                print("This book is already available in library. Please check your book ID.")
+                return self.return_books()
+            elif not self.books_dict[books_id]["Status"] == "Available":
+                self.books_dict[books_id]['lender_name'] = ""
+                self.books_dict[books_id]['Issue_date'] = ""
+                self.books_dict[books_id]['Status'] = "Available"
+                print("Successfully Returned")
+
+        else:
+            print("Book ID is not found")
+
 l = LMS("List_of_books.txt", "Python's Library")
 print(l.display_books())
 l.add_books()
+print(l.display_books())
+l.Issue_books()
+print(l.display_books())
+l.return_books()
 print(l.display_books())

@@ -105,12 +105,41 @@ class LMS:
         else:
             print("Book ID is not found")
 
+    def search_books(self, book_title):
+        # Remove leading and trailing white spaces and convert to lowercase
+        book_title = book_title.strip().lower()
+    
+        # Extract book titles and IDs from self.books_dict
+        book_titles = [value["books_title"].strip().lower() for key, value in self.books_dict.items()]
+        book_ids = list(self.books_dict.keys())
+    
+        # Sort the book titles and IDs together
+        book_titles, book_ids = zip(*sorted(zip(book_titles, book_ids))) #zip takes iterable or containers and return a single iterator
+    
+        # Perform binary search for the book title
+        low = 0
+        high = len(book_titles) - 1
+        while low <= high:
+            mid = (low + high) // 2
+            bt = book_titles[mid].replace('"', '')
+            if bt == book_title:
+                print(f"Book '{book_title}'is found in the Library.")
+                return book_ids[mid]
+            elif book_titles[mid] < book_title:
+                low = mid + 1
+            else:
+                high = mid - 1
+    
+        print(f"Book '{book_title}' not found")
+        return None
+
 try:
     myLMS = LMS("list_of_books.txt", "Python's")
     press_key_dict = {"D": "Display Books",
                     "I":"Issue Books",
                     "A": "Add Books", 
                     "R": "Return Books",
+                    "S": "Search Books",
                     "Q": "Quit"}    
     key_press = False
     while not (key_press == "q"):
@@ -130,6 +159,10 @@ try:
         elif key_press == 'r':
             print("\nCurrent Selection: Return Books\n")
             myLMS.return_books()
+        elif key_press == 's':
+            print("\nCurrent Selection: Search Books\n")
+            searchBook = input("Enter the the title of the book to search: ")
+            myLMS.search_books(searchBook)
         elif key_press == 'q':
             break
         else:

@@ -6,11 +6,14 @@ import os
 #os.getcwd()
 
 class LMS:
-    """ This class is used to keep record of books library
-    It has total four module: "Display book, "Issue Books", "Return Books", "Add Books" """
+    """
+    This class is used to keep records of books library.
+    It has total six modules: 'Display Books', 'Issue Books', 'Add Books', 'Return Books',
+    'list_of_books' should be txt file. 'library_name' should be string.
+    """
 
     def __init__(self, list_of_books, library_name):
-        self.list_of_books = "list_of_books.txt"
+        self.list_of_books = list_of_books
         self.library_name = library_name
         self.books_dict = {} #This dictionary will contain books title, lender name, issue date, and book status
         Id = 101 #Starting ID
@@ -24,16 +27,22 @@ class LMS:
             "lender_name": "",
             "issue_date": "", 
             "Status":"Available"}})
-            Id = Id + 1
+            Id += 1
 
     def display_books(self):
         print("------------------------List of Books---------------------")
         print("Books ID", "\t", "Title")
         print("----------------------------------------------------------")
 
-        for key, value in self.books_dict.items():
-            print(key, "\t\t", value.get("books_title"), "- [", value.get("Status"),"]")
+        #Sorting the books in ascending order
+        sorted_books = sorted(self.books_dict.values(), key=lambda x: x["books_title"])
 
+        for book in sorted_books:
+            for key, value in self.books_dict.items():
+                if book == value:
+                    print(key, "\t\t", value.get("books_title"), "- [", value.get("Status"),"]")
+                    break
+    
     def Issue_books(self):
         books_id = input ("Enter the book's ID: ")
         current_date = datetime.datetime.now().strftime ("%Y-%m_%d %H:%M:%S")

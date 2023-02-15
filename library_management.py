@@ -31,17 +31,28 @@ class LMS:
 
     def display_books(self):
         print("------------------------List of Books---------------------")
-        print("Books ID", "\t", "Title")
+        print("\tBooks ID", "\t\t\t", "Title")
         print("----------------------------------------------------------")
 
-        #Sorting the books in ascending order
-        sorted_books = sorted(self.books_dict.values(), key=lambda x: x["books_title"])
+        # Extract book titles and IDs from self.books_dict
+        book_titles = [value["books_title"] for key, value in self.books_dict.items()]
+        book_ids = list(self.books_dict.keys())
 
-        for book in sorted_books:
-            for key, value in self.books_dict.items():
-                if book == value:
-                    print(key, "\t\t", value.get("books_title"), "- [", value.get("Status"),"]")
-                    break
+        # Sort the book titles using insertion sort
+        for i in range(1, len(book_titles)):
+            j = i - 1
+            key = book_titles[i]
+            key_id = book_ids[i]
+            while j >= 0 and book_titles[j] > key:
+                book_titles[j + 1] = book_titles[j]
+                book_ids[j + 1] = book_ids[j]
+                j -= 1
+            book_titles[j + 1] = key
+            book_ids[j + 1] = key_id
+
+    # Print the sorted book titles and IDs
+        for i in range(len(book_titles)):
+            print(book_ids[i], "\t\t", book_titles[i], "- [", self.books_dict[book_ids[i]]["Status"], "]")
     
     def Issue_books(self):
         books_id = input ("Enter the book's ID: ")
@@ -71,7 +82,7 @@ class LMS:
             return self.add_books()
         else:
             with open(self.list_of_books, "a") as bk:
-                bk.writelines(f"{new_books}\n")
+                bk.writelines(f"\n{new_books}\n")
                 self.books_dict.update({str(int(max(self.books_dict))+1):{
                 'books_title':new_books, 
                 'lender_name':"", 

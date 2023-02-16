@@ -4,6 +4,8 @@
 import datetime
 import os
 import time
+import colorama
+from colorama import Fore, Back, Style
 #os.getcwd()
 
 class LMS:
@@ -32,9 +34,13 @@ class LMS:
 
     def display_books(self):
         time.sleep(1)
-        print("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ LIST OF BOOKS ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
-        print("\t\t\tBOOKS ID", "\t\t\t\t", "TITLE")
+        print(Fore.MAGENTA)
+        print("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄" , (Fore.WHITE) + "\033[1mLIST OF BOOKS\033[0m",  (Fore.MAGENTA) +"▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
+        print(Style.RESET_ALL)
+        print("\t\t\t\033[1mBOOKS ID\033[0m", "\t\t\t\t", "\033[1mTITLE\033[0m")
+        print(Fore.MAGENTA)
         print("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
+        print(Style.RESET_ALL)
         time.sleep (1)
         # Extract book titles and IDs from self.books_dict
         book_titles = [value["books_title"] for key, value in self.books_dict.items()]
@@ -54,7 +60,8 @@ class LMS:
 
     # Print the sorted book titles and IDs
         for i in range(len(book_titles)):
-            print("\t\t\t", book_ids[i], "\t\t\t", book_titles[i], "- [", self.books_dict[book_ids[i]]["Status"], "]")
+            print("\t\t\t", book_ids[i], "\t\t\t", book_titles[i], "- >", (Fore.BLUE) + self.books_dict[book_ids[i]]["Status"],(Style.RESET_ALL)+ "")
+        print(Fore.MAGENTA)
         print("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
         time.sleep(1)
     
@@ -63,8 +70,7 @@ class LMS:
         current_date = datetime.datetime.now().strftime ("%Y-%m_%d %H:%M:%S")
         if books_id in self.books_dict.keys():
             if not self.books_dict[books_id]["Status"] == "Available":
-                print(f"This book is already issued to {self.books_dict[books_id]['lender_name']} \
-                    on {self.books_dict[books_id]['issue_date']}")
+                print(f"This book is already issued to {self.books_dict[books_id]['lender_name']} on {self.books_dict[books_id]['issue_date']}")
                 return self.Issue_books()
             elif self.books_dict[books_id]['Status'] == "Available":
                 name = input ("\nEnter your name: ")
@@ -73,7 +79,8 @@ class LMS:
                 self.books_dict[books_id]['Status'] = "Already Issued"
                 print("\nProcessing your request...\n")
                 time.sleep(2)
-                print ("Books Issued Successfully! \n")
+                print ("Books Issued Successfully!")
+                print(Fore.MAGENTA)
                 print("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
 
         else:
@@ -97,7 +104,8 @@ class LMS:
                 'Status':"Available"}})
                 print("\nAdding the books to the System...\n")
                 time.sleep(2)
-                print (f"This books '{new_books}' has been added successfully!")
+                print (f"This book '{new_books}' has been added successfully!")
+                print(Fore.MAGENTA)
                 print("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
 
     def return_books(self):
@@ -112,7 +120,8 @@ class LMS:
                 self.books_dict[books_id]['Status'] = "Available"
                 print("\nProcessing your request...\n")
                 time.sleep(2)
-                print("Successfully Returned")
+                print("Successfully Returned!")
+                print(Fore.MAGENTA)
                 print("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
 
         else:
@@ -139,6 +148,7 @@ class LMS:
             bt = book_titles[mid].replace('"', '')
             if bt == book_title:
                 print(f"Book '{book_title}' is found in the Library. Press D to Display the books.")
+                print(Fore.MAGENTA)
                 print("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
                 return book_ids[mid]
             elif book_titles[mid] < book_title:
@@ -160,12 +170,16 @@ try:
     key_press = False
     while not (key_press == "q"):
         time.sleep(0.5)
-        print(f"\n▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ Welcome To {myLMS.library_name}'s Library Management System ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄\n")
+        print(Fore.MAGENTA)
+        print(f"\n▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄"+(Fore.WHITE)+f" Welcome To \033[1m{myLMS.library_name} Library Management System \033[0m" + (Fore.MAGENTA)+"▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄\n")
+        print(Style.RESET_ALL)
         for key, value in press_key_dict.items():
-            print("                                           Press", key, "To", value, "                                             ")
+            print("                                           Press", (Fore.BLUE)+ key, (Style.RESET_ALL)+ "To", (Fore.BLUE)+value, (Style.RESET_ALL) + "                                             ")
+        print(Fore.MAGENTA)
         print("\n▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
+        print(Style.RESET_ALL)
         time.sleep(0.5)
-        key_press = input ("\nPress key: ").lower()
+        key_press = input ("\n\033[1mPRESS KEY: \033[0m").lower()
         if key_press == "i":
             print("\nCurrent Selection: Issue Books\n")
             myLMS.Issue_books()

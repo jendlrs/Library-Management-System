@@ -69,6 +69,7 @@ class LMS:
                 self.books_dict[books_id]['issue_date'] = current_date
                 self.books_dict[books_id]['Status'] = "Already Issued"
                 print ("Books Issued Successfully! \n")
+                print("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
 
         else:
             print("Book ID not found!")
@@ -90,6 +91,7 @@ class LMS:
                 'issue_date':"", 
                 'Status':"Available"}})
                 print (f"This books '{new_books}' has been added successfully!")
+                print("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
 
     def return_books(self):
         books_id = input ("Enter the book's ID: ")
@@ -102,6 +104,7 @@ class LMS:
                 self.books_dict[books_id]['Issue_date'] = ""
                 self.books_dict[books_id]['Status'] = "Available"
                 print("Successfully Returned")
+                print("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
 
         else:
             print("Book ID is not found")
@@ -124,7 +127,8 @@ class LMS:
             mid = (low + high) // 2
             bt = book_titles[mid].replace('"', '')
             if bt == book_title:
-                print(f"Book '{book_title}' is found in the Library.")
+                print(f"Book '{book_title}' is found in the Library. Press D to Display the books.")
+                print("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
                 return book_ids[mid]
             elif book_titles[mid] < book_title:
                 low = mid + 1

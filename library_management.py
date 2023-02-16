@@ -3,6 +3,7 @@
 #Importing Libraries
 import datetime
 import os
+import time
 #os.getcwd()
 
 class LMS:
@@ -30,10 +31,11 @@ class LMS:
             Id += 1
 
     def display_books(self):
+        time.sleep(1)
         print("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ LIST OF BOOKS ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
         print("\t\t\tBOOKS ID", "\t\t\t\t", "TITLE")
         print("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
-
+        time.sleep (1)
         # Extract book titles and IDs from self.books_dict
         book_titles = [value["books_title"] for key, value in self.books_dict.items()]
         book_ids = list(self.books_dict.keys())
@@ -54,6 +56,7 @@ class LMS:
         for i in range(len(book_titles)):
             print("\t\t\t", book_ids[i], "\t\t\t", book_titles[i], "- [", self.books_dict[book_ids[i]]["Status"], "]")
         print("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
+        time.sleep(1)
     
     def Issue_books(self):
         books_id = input ("Enter the book's ID: ")
@@ -64,10 +67,12 @@ class LMS:
                     on {self.books_dict[books_id]['issue_date']}")
                 return self.Issue_books()
             elif self.books_dict[books_id]['Status'] == "Available":
-                name = input ("Enter your name: ")
+                name = input ("\nEnter your name: ")
                 self.books_dict[books_id]['lender_name'] = name
                 self.books_dict[books_id]['issue_date'] = current_date
                 self.books_dict[books_id]['Status'] = "Already Issued"
+                print("\nProcessing your request...\n")
+                time.sleep(2)
                 print ("Books Issued Successfully! \n")
                 print("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
 
@@ -90,6 +95,8 @@ class LMS:
                 'lender_name':"", 
                 'issue_date':"", 
                 'Status':"Available"}})
+                print("\nAdding the books to the System...\n")
+                time.sleep(2)
                 print (f"This books '{new_books}' has been added successfully!")
                 print("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
 
@@ -103,6 +110,8 @@ class LMS:
                 self.books_dict[books_id]['lender_name'] = ""
                 self.books_dict[books_id]['Issue_date'] = ""
                 self.books_dict[books_id]['Status'] = "Available"
+                print("\nProcessing your request...\n")
+                time.sleep(2)
                 print("Successfully Returned")
                 print("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
 
@@ -123,6 +132,8 @@ class LMS:
         # Perform binary search for the book title
         low = 0
         high = len(book_titles) - 1
+        print("\nSearching the Library...\n")
+        time.sleep(2)
         while low <= high:
             mid = (low + high) // 2
             bt = book_titles[mid].replace('"', '')
@@ -148,15 +159,18 @@ try:
                     "Q": "Quit"}    
     key_press = False
     while not (key_press == "q"):
+        time.sleep(0.5)
         print(f"\n▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ Welcome To {myLMS.library_name}'s Library Management System ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄\n")
         for key, value in press_key_dict.items():
             print("                                           Press", key, "To", value, "                                             ")
         print("\n▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
+        time.sleep(0.5)
         key_press = input ("\nPress key: ").lower()
         if key_press == "i":
             print("\nCurrent Selection: Issue Books\n")
             myLMS.Issue_books()
         elif key_press == 'd':
+            time.sleep(1)
             print("\nCurrent Selection: Display Books\n")
             myLMS.display_books()
         elif key_press == 'a':

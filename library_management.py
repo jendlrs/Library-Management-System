@@ -44,6 +44,7 @@ class LMS:
         print("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
         print(Style.RESET_ALL)
         time.sleep (1)
+        
         # Extract book titles and IDs from self.books_dict
         book_titles = [value["books_title"] for key, value in self.books_dict.items()]
         book_ids = list(self.books_dict.keys())
@@ -120,7 +121,7 @@ class LMS:
         books_id = input ("\nEnter the book's ID: ")
         if books_id in self.books_dict.keys():
             if self.books_dict[books_id]["Status"] == "Available":
-                print("This book is already available in library. Please check your book ID.")
+                print("\nThis book is already available in library. Please check your book ID.")
                 return self.return_books()
             elif not self.books_dict[books_id]["Status"] == "Available":
                 self.books_dict[books_id]['lender_name'] = ""
@@ -189,6 +190,7 @@ try:
                     "R": "Return Books",
                     "S": "Search Books",
                     "Q": "Quit"}    
+
     key_press = False
     while not (key_press == "q"):
         time.sleep(0.5)

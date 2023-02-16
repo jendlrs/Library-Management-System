@@ -84,12 +84,12 @@ class LMS:
                 animate(text)
 
                 time.sleep(1)
-                print ("\nBooks Issued Successfully!")
+                print ("\n\033[1mBooks Issued Successfully!\033[0m")
                 print(Fore.MAGENTA)
                 print("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
 
         else:
-            print("Book ID not found!")
+            print("\033[1mBook ID not found!\033[0m")
             return self.Issue_books()
 
     def add_books(self):
@@ -112,12 +112,12 @@ class LMS:
                 animate(text)
 
                 time.sleep(1)
-                print (f"\nThe book '{new_books}' has been added successfully!")
+                print (f"\nThe book '\033[1m{new_books}\033[0m' has been added successfully!")
                 print(Fore.MAGENTA)
                 print("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
 
     def return_books(self):
-        books_id = input ("Enter the book's ID: ")
+        books_id = input ("\nEnter the book's ID: ")
         if books_id in self.books_dict.keys():
             if self.books_dict[books_id]["Status"] == "Available":
                 print("This book is already available in library. Please check your book ID.")
@@ -131,7 +131,7 @@ class LMS:
                 animate(text)
 
                 time.sleep(1)
-                print("\nSuccessfully Returned!")
+                print("\n\033[1mSuccessfully Returned!\033[0m")
                 print(Fore.MAGENTA)
                 print("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
 
@@ -161,7 +161,7 @@ class LMS:
             mid = (low + high) // 2
             bt = book_titles[mid].replace('"', '')
             if bt == book_title:
-                print(f"\nBook '{book_title}' was found in the Library. Press D to Display the books.")
+                print(f"\n\nBook '\033[1m{book_title}\033[0m' was found in the Library. Press D to Display the books.")
                 print(Fore.MAGENTA)
                 print("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
                 return book_ids[mid]
@@ -170,7 +170,7 @@ class LMS:
             else:
                 high = mid - 1
     
-        print(f"\nBook '{book_title}' not found in the Library.")
+        print(f"\nBook '\033[1m{book_title}\033[0m' was not found in the Library.")
         return None
 
 #To add typewriter effect

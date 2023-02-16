@@ -4,6 +4,8 @@
 import datetime
 import os
 import time
+import sys
+from time import sleep
 import colorama
 from colorama import Fore, Back, Style
 #os.getcwd()
@@ -77,9 +79,15 @@ class LMS:
                 self.books_dict[books_id]['lender_name'] = name
                 self.books_dict[books_id]['issue_date'] = current_date
                 self.books_dict[books_id]['Status'] = "Already Issued"
-                print("\nProcessing your request...\n")
-                time.sleep(2)
-                print ("Books Issued Successfully!")
+
+                text = ("\nProcessing your request ....\n")
+                for char in str(text):
+                    sys.stdout.write(char)
+                    sys.stdout.flush()
+                    time.sleep (0.1)
+
+                time.sleep(1)
+                print ("\nBooks Issued Successfully!")
                 print(Fore.MAGENTA)
                 print("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
 
@@ -102,9 +110,15 @@ class LMS:
                 'lender_name':"", 
                 'issue_date':"", 
                 'Status':"Available"}})
-                print("\nAdding the books to the System...\n")
-                time.sleep(2)
-                print (f"This book '{new_books}' has been added successfully!")
+
+                text = ("\nAdding the books to the system ....\n")
+                for char in str(text):
+                    sys.stdout.write(char)
+                    sys.stdout.flush()
+                    time.sleep (0.1)
+
+                time.sleep(1)
+                print (f"\nThe book '{new_books}' has been added successfully!")
                 print(Fore.MAGENTA)
                 print("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
 
@@ -118,8 +132,14 @@ class LMS:
                 self.books_dict[books_id]['lender_name'] = ""
                 self.books_dict[books_id]['Issue_date'] = ""
                 self.books_dict[books_id]['Status'] = "Available"
-                print("\nProcessing your request...\n")
-                time.sleep(2)
+            
+                text = ("\nProcessing your request ....\n")
+                for char in str(text):
+                    sys.stdout.write(char)
+                    sys.stdout.flush()
+                    time.sleep (0.1)
+
+                time.sleep(1)
                 print("Successfully Returned!")
                 print(Fore.MAGENTA)
                 print("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
@@ -141,13 +161,19 @@ class LMS:
         # Perform binary search for the book title
         low = 0
         high = len(book_titles) - 1
-        print("\nSearching the Library...\n")
-        time.sleep(2)
+
+        text = ("\nSearching the Library ....\n")
+        for char in str(text):
+            sys.stdout.write(char)
+            sys.stdout.flush()
+            time.sleep (0.1)
+
+        time.sleep(1)
         while low <= high:
             mid = (low + high) // 2
             bt = book_titles[mid].replace('"', '')
             if bt == book_title:
-                print(f"Book '{book_title}' is found in the Library. Press D to Display the books.")
+                print(f"Book '{book_title}' was found in the Library. Press D to Display the books.")
                 print(Fore.MAGENTA)
                 print("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
                 return book_ids[mid]
@@ -156,7 +182,7 @@ class LMS:
             else:
                 high = mid - 1
     
-        print(f"Book '{book_title}' not found.")
+        print(f"\nBook '{book_title}' not found in the Library.")
         return None
 
 try:

@@ -30,9 +30,9 @@ class LMS:
             Id += 1
 
     def display_books(self):
-        print("------------------------List of Books---------------------")
-        print("\tBooks ID", "\t\t\t", "Title")
-        print("----------------------------------------------------------")
+        print("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ LIST OF BOOKS ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
+        print("\t\t\tBOOKS ID", "\t\t\t\t", "TITLE")
+        print("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
 
         # Extract book titles and IDs from self.books_dict
         book_titles = [value["books_title"] for key, value in self.books_dict.items()]
@@ -52,7 +52,8 @@ class LMS:
 
     # Print the sorted book titles and IDs
         for i in range(len(book_titles)):
-            print(book_ids[i], "\t\t", book_titles[i], "- [", self.books_dict[book_ids[i]]["Status"], "]")
+            print("\t\t\t", book_ids[i], "\t\t\t", book_titles[i], "- [", self.books_dict[book_ids[i]]["Status"], "]")
+        print("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
     
     def Issue_books(self):
         books_id = input ("Enter the book's ID: ")
@@ -123,14 +124,14 @@ class LMS:
             mid = (low + high) // 2
             bt = book_titles[mid].replace('"', '')
             if bt == book_title:
-                print(f"Book '{book_title}'is found in the Library.")
+                print(f"Book '{book_title}' is found in the Library.")
                 return book_ids[mid]
             elif book_titles[mid] < book_title:
                 low = mid + 1
             else:
                 high = mid - 1
     
-        print(f"Book '{book_title}' not found")
+        print(f"Book '{book_title}' not found.")
         return None
 
 try:
@@ -143,10 +144,11 @@ try:
                     "Q": "Quit"}    
     key_press = False
     while not (key_press == "q"):
-        print(f"\n----------Welcome To {myLMS.library_name}'s Library Management System---------\n")
+        print(f"\n▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ Welcome To {myLMS.library_name}'s Library Management System ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄\n")
         for key, value in press_key_dict.items():
-            print("Press", key, "To", value)
-        key_press = input ("Press key: ").lower()
+            print("                                           Press", key, "To", value, "                                             ")
+        print("\n▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
+        key_press = input ("\nPress key: ").lower()
         if key_press == "i":
             print("\nCurrent Selection: Issue Books\n")
             myLMS.Issue_books()

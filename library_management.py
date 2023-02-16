@@ -65,10 +65,10 @@ class LMS:
             print("\t\t\t", book_ids[i], "\t\t\t", book_titles[i], "- >", (Fore.BLUE) + self.books_dict[book_ids[i]]["Status"],(Style.RESET_ALL)+ "")
         print(Fore.MAGENTA)
         print("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
-        time.sleep(1)
+        time.sleep(2)
     
     def Issue_books(self):
-        books_id = input ("Enter the book's ID: ")
+        books_id = input ("\nEnter the book's ID: ")
         current_date = datetime.datetime.now().strftime ("%Y-%m_%d %H:%M:%S")
         if books_id in self.books_dict.keys():
             if not self.books_dict[books_id]["Status"] == "Available":
@@ -81,10 +81,7 @@ class LMS:
                 self.books_dict[books_id]['Status'] = "Already Issued"
 
                 text = ("\nProcessing your request ....\n")
-                for char in str(text):
-                    sys.stdout.write(char)
-                    sys.stdout.flush()
-                    time.sleep (0.1)
+                animate(text)
 
                 time.sleep(1)
                 print ("\nBooks Issued Successfully!")
@@ -96,7 +93,7 @@ class LMS:
             return self.Issue_books()
 
     def add_books(self):
-        new_books = input("Enter the title of the book: ")
+        new_books = input("\nEnter the title of the book: ")
         if new_books == "":
             return self.add_books()
         elif len(new_books) > 25:
@@ -112,10 +109,7 @@ class LMS:
                 'Status':"Available"}})
 
                 text = ("\nAdding the books to the system ....\n")
-                for char in str(text):
-                    sys.stdout.write(char)
-                    sys.stdout.flush()
-                    time.sleep (0.1)
+                animate(text)
 
                 time.sleep(1)
                 print (f"\nThe book '{new_books}' has been added successfully!")
@@ -134,13 +128,10 @@ class LMS:
                 self.books_dict[books_id]['Status'] = "Available"
             
                 text = ("\nProcessing your request ....\n")
-                for char in str(text):
-                    sys.stdout.write(char)
-                    sys.stdout.flush()
-                    time.sleep (0.1)
+                animate(text)
 
                 time.sleep(1)
-                print("Successfully Returned!")
+                print("\nSuccessfully Returned!")
                 print(Fore.MAGENTA)
                 print("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
 
@@ -162,18 +153,15 @@ class LMS:
         low = 0
         high = len(book_titles) - 1
 
-        text = ("\nSearching the Library ....\n")
-        for char in str(text):
-            sys.stdout.write(char)
-            sys.stdout.flush()
-            time.sleep (0.1)
+        text = ("\nSearching the Library ....")
+        animate(text)
 
-        time.sleep(1)
+        time.sleep(2)
         while low <= high:
             mid = (low + high) // 2
             bt = book_titles[mid].replace('"', '')
             if bt == book_title:
-                print(f"Book '{book_title}' was found in the Library. Press D to Display the books.")
+                print(f"\nBook '{book_title}' was found in the Library. Press D to Display the books.")
                 print(Fore.MAGENTA)
                 print("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄")
                 return book_ids[mid]
@@ -184,6 +172,14 @@ class LMS:
     
         print(f"\nBook '{book_title}' not found in the Library.")
         return None
+
+#To add typewriter effect
+def animate(text):
+    for char in str(text):
+        sys.stdout.write(char)
+        sys.stdout.flush()
+        time.sleep (0.03)
+
 
 try:
     myLMS = LMS("list_of_books.txt", "Python's")
@@ -207,23 +203,29 @@ try:
         time.sleep(0.5)
         key_press = input ("\n\033[1mPRESS KEY: \033[0m").lower()
         if key_press == "i":
-            print("\nCurrent Selection: Issue Books\n")
+            text = ("\nCurrent Selection: Issue Books\n")
+            animate(text)
             myLMS.Issue_books()
         elif key_press == 'd':
             time.sleep(1)
-            print("\nCurrent Selection: Display Books\n")
+            text = ("\nCurrent Selection: Display Books\n")
+            animate(text)
             myLMS.display_books()
         elif key_press == 'a':
-            print("\nCurrent Selection: Add Books\n")
+            text = ("\nCurrent Selection: Add Books\n")
+            animate(text)
             myLMS.add_books()
         elif key_press == 'r':
-            print("\nCurrent Selection: Return Books\n")
+            text = ("\nCurrent Selection: Return Books\n")
+            animate(text)
             myLMS.return_books()
         elif key_press == 's':
-            print("\nCurrent Selection: Search Books\n")
-            searchBook = input("Enter the the title of the book to search: ")
+            text = ("\nCurrent Selection: Search Books\n")
+            animate(text)
+            searchBook = input("\nEnter the the title of the book to search: ")
             myLMS.search_books(searchBook)
         elif key_press == 'q':
+            print("\nThank you for using the Library!\n")
             break
         else:
             continue    
